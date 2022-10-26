@@ -3656,6 +3656,10 @@ var resolvePagination = function resolvePagination(doc, fontStore) {
 
   for (var i = 0; i < doc.children.length; i += 1) {
     var page = doc.children[i];
+    if (!page.props?.wrap) {
+      pages.push(page);
+      continue;
+    }
     var subpages = paginate(page, pageNumber, fontStore);
     subpages = assocSubPageData(subpages);
     pageNumber += subpages.length;
